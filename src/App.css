@@ -1,11 +1,17 @@
 .App {
+  /* border: *; */
+  /* bord */
   text-align: center;
+  margin: 2rem 6rem;
+  height: 80%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.routeLinks {
+  margin: 10px 0.5rem;
+  text-decoration: none;
+  /* padding: */
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
