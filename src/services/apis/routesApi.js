@@ -22,21 +22,19 @@ export const routesApi = createApi({
     getRouteDirection: builder.query({
       // query: () => "/routes",
       // query: address => `${address}`,
-      query: (route_id) => `/directions/${route_id}`,
+      query: (routeId) => `/directions/${routeId}`,
+    }),
+    getRouteDetails: builder.query({
+      // query: () => "/routes",
+      // query: address => `${address}`,
+      // console.log(routeId, directionId),
+      query: (direction) => `/stops/${direction}`,
     }),
   }),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetAllRoutesQuery, useGetRouteDirectionQuery } = routesApi;
-
-// const res = await fetch('http://localhost:3000/concerts', {
-//   method: 'POST',
-//   body: JSON.stringify(concert),
-//   headers: {
-//     'Content-Type': 'application/json',
-//     Accept: 'application/json'
-//   }
-// });
-// const data = await res.json();
+export const {
+  useGetAllRoutesQuery,
+  useGetRouteDirectionQuery,
+  useGetRouteDetailsQuery,
+} = routesApi;

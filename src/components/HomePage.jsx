@@ -1,63 +1,42 @@
 import React from "react";
+import { Outlet, Link } from "react-router-dom";
 import { useGetAllRoutesQuery } from "../services/apis/routesApi";
-import { useGetRouteDirectionQuery } from "../services/apis/routesApi";
+import { useDispatch } from "react-redux";
+import { getRouteId } from "../services/slices/routesSlice";
+import Loading from "./Loading";
 
 const Homepage = () => {
-  const { data: routes, isFetching, error } = useGetAllRoutesQuery();
-  // const { data: direction } = useGetRouteDirectionQuery(901);
+  const { data: routes, isFetching, isLoading, error } = useGetAllRoutesQuery();
+  const dispatch = useDispatch();
 
-  // const globalStats = data?.data?.stats;
+  if (isFetching || isLoading) return <Loading />;
 
-  // console.log(routes);
-  // console.log(direction);
-
-  // const route = routes.map((route) => console.log({ route }));
-
-  // const routeList = routes.map(
-  //   (route) => console.log(route)
-  //   // <li key={route.id}> {route}</li>;
-  // );
-  // const listRoutes = routesArray.map(({ route_label, route_id }) =>
-  //   console.log({ route_label, route_id })
-  // );
-
-  // console.log(listRoutes);
-  // console.log(routes.route_label);
-  if (isFetching) return <div className="App">"Loading....."</div>;
-
-  const handleClick = () => {
-    // e.preventDefault();
-    // console.log(route.route_id);
+  const handleClick = (routeId, e) => {
+    dispatch(getRouteId(routeId));
+    console.log(routeId);
     console.log("clicked");
   };
 
   return (
     <>
       <div className="App">
-        {routes.map((route) => (
-          <a
-            className="routeLinks"
-            href="/#"
-            onClick={handleClick}
+        {routes?.map((route) => (
+          <Link
+            to={`${route.route_id}`}
+            // to={`/#`}
+            onClick={(e) => handleClick(route.route_id, e)}
             key={route.route_id}
+            className="routeLinks"
           >
             {route.route_label}
-          </a>
+          </Link>
         ))}
-        <div className="App">{/* <ul>{routeList}</ul> */}</div>
+        <div className="App">
+          <Outlet />
+        </div>
       </div>
     </>
   );
 };
-
-// function PostsList() {
-//   const { data, error } = useGetPostsQuery()
-
-//   return (
-//     <div>
-//       {error.status} {JSON.stringify(error.data)}
-//     </div>
-//   )
-// }
 
 export default Homepage;

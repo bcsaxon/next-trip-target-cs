@@ -7,11 +7,14 @@
 }
 
 .routeLinks {
-  margin: 10px 0.5rem;
+  margin: 2rem 0.5rem;
   text-decoration: none;
   /* padding: */
 }
 
+.directionLinks {
+  margin: 0 0.5rem;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
