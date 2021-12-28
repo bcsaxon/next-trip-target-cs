@@ -3,23 +3,19 @@ import Homepage from "./components/HomePage";
 import RouteDetails from "./components/RouteDetails";
 import RouteDirection from "./components/RouteDirection";
 import { Routes, Route } from "react-router-dom";
+import NotFound from "./components/NotFound";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
+      <Header />
       <Routes>
-        <Route exact path="/" element={<Homepage />}>
-          <Route exact path=":routeId" element={<RouteDirection />}>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Homepage />}>
+          <Route path=":routeId" element={<RouteDirection />}>
             <Route path=":directionId" element={<RouteDetails />} />
           </Route>
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>Wrong Path</p>
-              </main>
-            }
-          />
         </Route>
       </Routes>
     </>

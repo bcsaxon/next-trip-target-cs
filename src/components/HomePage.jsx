@@ -1,39 +1,40 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useGetAllRoutesQuery } from "../services/apis/routesApi";
 import { useDispatch } from "react-redux";
 import { getRouteId } from "../services/slices/routesSlice";
 import Loading from "./Loading";
 
 const Homepage = () => {
-  const { data: routes, isFetching, isLoading, error } = useGetAllRoutesQuery();
+  const { data: routes, isFetching } = useGetAllRoutesQuery();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  if (isFetching || isLoading) return <Loading />;
+  if (isFetching) return <Loading />;
 
-  const handleClick = (routeId, e) => {
-    dispatch(getRouteId(routeId));
-    console.log(routeId);
-    console.log("clicked");
+  const handleOnChange = (e) => {
+    dispatch(getRouteId(e.target.value));
+    navigate(e.target.value);
   };
 
   return (
     <>
-      <div className="App">
-        {routes?.map((route) => (
-          <Link
-            to={`${route.route_id}`}
-            // to={`/#`}
-            onClick={(e) => handleClick(route.route_id, e)}
-            key={route.route_id}
-            className="routeLinks"
+      <div className="app">
+        <nav className="navContainer">
+          <select
+            data-testid="dropdown"
+            className="routeSelect"
+            onChange={handleOnChange}
           >
-            {route.route_label}
-          </Link>
-        ))}
-        <div className="App">
-          <Outlet />
-        </div>
+            <option value="Select a Stop"> -- Select a Stop -- </option>
+            {routes?.map((route) => (
+              <option key={route.route_id} value={route.route_id}>
+                {route.route_label}
+              </option>
+            ))}
+          </select>
+        </nav>
+        <Outlet />
       </div>
     </>
   );
