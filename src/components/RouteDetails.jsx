@@ -6,18 +6,11 @@ import RouteDetailsCard from "./RouteDetailsCard";
 
 const RouteDetails = () => {
   const { routeId, directionId } = useParams();
-  const {
-    data: stops,
-    isFetching,
-    isLoading,
-    error,
-  } = useGetRouteDetailsQuery(`${routeId}/${directionId}`);
+  const { data: stops, isFetching } = useGetRouteDetailsQuery(
+    `${routeId}/${directionId}`
+  );
 
-  if (isFetching || isLoading) return <Loading />;
-  console.log(routeId);
-  console.log(directionId);
-
-  console.log(stops);
+  if (isFetching) return <Loading />;
 
   return (
     <>
@@ -35,8 +28,4 @@ const RouteDetails = () => {
   );
 };
 
-// {/* <div key={stop.place_code} className="directionLinks">
-//   <h3>{stop.place_code}</h3>
-//   <p>{stop.description}</p>
-// </div> */}
 export default RouteDetails;
