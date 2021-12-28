@@ -9,44 +9,33 @@ const RouteDirection = () => {
   const { routeId } = useParams();
   const dispatch = useDispatch();
 
-  const {
-    data: directions,
-    isFetching,
-    isLoading,
-    error,
-  } = useGetRouteDirectionQuery(routeId);
+  const { data: directions, isFetching } = useGetRouteDirectionQuery(routeId);
 
-  console.log(routeId);
-
-  if (isFetching || isLoading) return <Loading />;
-
-  console.log(directions);
-  console.log(directions[0]?.direction_name);
+  if (isFetching) return <Loading />;
 
   const handleClick = (directionId, e) => {
     dispatch(getDirectionId(directionId));
-    console.log(directionId);
-    console.log("clicked direction");
   };
 
   return (
     <>
-      <div className="App">
+      <div className="routeDirectionContainer">
         <h1>Route Direction</h1>
-        {directions?.map((direction) => (
-          <Link
-            to={`${direction.direction_id}`}
-            onClick={(e) => handleClick(direction.direction_id, e)}
-            key={direction.direction_id}
-            className="directionLinks"
-          >
-            {direction.direction_name}
-          </Link>
-        ))}
-        <div className="App">
-          <Outlet />
+        <div className="directionButtonsContainer">
+          {directions?.map((direction) => (
+            <Link
+              to={`${direction.direction_id}`}
+              onClick={() => handleClick(direction.direction_id)}
+              key={direction.direction_id}
+            >
+              <button className="directionButtons">
+                {direction.direction_name}
+              </button>
+            </Link>
+          ))}
         </div>
       </div>
+      <Outlet />
     </>
   );
 };

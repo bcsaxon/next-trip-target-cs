@@ -1,47 +1,112 @@
-.App {
-  /* border: *; */
-  /* bord */
+.app {
   text-align: center;
-  margin: 2rem 6rem;
-  height: 80%;
+  margin: 3rem 6rem;
+}
+
+.header {
+  text-align: left;
+  background-color: lightgray;
+  padding: 0.75rem 5rem;
+}
+
+.header a {
+  text-decoration: none;
+  color: #cc0000;
+}
+
+.directionButtons {
+  margin: 0rem 1rem;
+  padding: 1rem 2rem;
+  padding-top: 1.5rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.directionButtonsContainer {
+  margin-top: 4rem;
+}
+
+.linksWrapper {
+  margin: 3rem 0;
+}
+.navContainer {
+  padding: 1rem;
+}
+.notFound {
+  margin-top: 4rem;
+}
+
+.routeDetailsContainer {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.routeDetailsCardHeader {
+  display: flex;
+}
+
+.routeDetailsCardHeader h2 {
+  width: 50%;
+}
+
+.routeDetailsCard {
+  display: flex;
+  background-color: lightgray;
+  border-bottom: 1px solid white;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.routeDetailsCard h3 {
+  width: 50%;
+  justify-content: center;
+}
+
+.routeDirectionContainer {
+  margin: 5rem;
 }
 
 .routeLinks {
   margin: 2rem 0.5rem;
   text-decoration: none;
-  /* padding: */
+  line-height: 1.5rem;
+  color: black;
 }
 
-.directionLinks {
-  margin: 0 0.5rem;
+.routeLinks:hover {
+  color: red;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.routeSelect {
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+
+.targetSpot {
+  width: 50%;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    text-align: center;
+    align-items: center;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .app {
+    width: 100vw;
+    margin: 0 auto;
   }
-  to {
-    transform: rotate(360deg);
+  .routeSelect {
+    padding: 0.5rem;
+    margin-top: 2rem;
+  }
+  .routeDetailsCardHeader {
+    font-size: 0.6rem;
+    align-items: center;
+  }
+  .routeDetailsCard {
+    font-size: 0.6rem;
+  }
+  .directionButtons {
+    margin: 0.5rem 1rem;
   }
 }
