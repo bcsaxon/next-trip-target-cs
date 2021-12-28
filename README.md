@@ -1,4 +1,4 @@
-## Hi Corina and Mark!
+## Hi all!
 
 ### Steps to build and run locally.
 
