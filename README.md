@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3b32e927-d493-4897-bc67-883e175374d1/deploy-status)](https://app.netlify.com/sites/festive-shannon-b8cabf/deploys)
+
 ## Hi all!
 
 ### Steps to build and run locally.
